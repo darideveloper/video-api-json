@@ -21,18 +21,18 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/darideveloper/europeanstartups_scraper">
-    <img src="imgs/logo.png" alt="Logo" width="200" height="80">
+  <a href="https://github.com/darideveloper/video_api_json">
+    <img src="imgs/logo.png" alt="Logo" width="250" height="80">
   </a>
 
-<h3 align="center">Europeanstartups Scraper</h3>
+<h3 align="center">Video API Json</h3>
 
   <p align="center">
-    Python scraper for extract data from the page <a href="https://app.europeanstartups.co/companies.startups/f/data_type/anyof_Verified/regions/allof_European%20Union">https://app.europeanstartups.co/companies.startups/f/data_type/anyof_Verified/regions/allof_European%20Union</a>, using python, and a google chrome data with a premium account already logged.
+    Flask app for modify data (CRUD) about films stored in a local json file.
     <br />
-    <a href="https://github.com/darideveloper/europeanstartups_scraper/issues">Report Bug</a>
+    <a href="https://github.com/darideveloper/video_api_json/issues">Report Bug</a>
     ·
-    <a href="https://github.com/darideveloper/europeanstartups_scraper/issues">Request Feature</a>
+    <a href="https://github.com/darideveloper/video_api_json/issues">Request Feature</a>
   </p>
 </div>
 
@@ -70,33 +70,56 @@
 
 [![Web page Screenshot][product-screenshot]](webpage)
 
-The project extract all results from the page [https://app.europeanstartups.co/companies.startups/f/data_type/anyof_Verified/regions/allof_European%20Union](https://app.europeanstartups.co/companies.startups/f/data_type/anyof_Verified/regions/allof_European%20Union), and save the output data in a csv file.
+Flask app for modify data (CRUD) about films stored in a local json file.
 
-The project is a python script, that use a google chrome data with a premium account already logged, to extract the data from the page.
+### Api endpoints
 
-The data extract is:
+### Data structure
 
-* NAME
-* DEALROOM SIGNAL
-* MARKET
-* TYPE
-* LAUNCH DATE
-* VALUATION
-* FUNDING
-* LOCATION
-* LAST ROUND
-* REVENUE
-* STATUS
-* GROWTH STAGE
-* EMPLOYEES
-* OWNERSHIP
-* MARKET CAP
-* DEBT
-* URL WEBSITE
-* LINKEDIN PROFILE
-* TWITTER PROFILE
-* FIRM VALUATION
-* TAGS
+The project allow all data structure modification and languje, just keep the variable "last_update" in the top, as a string, and "films" like a list of dictionaries.
+
+Sample (english):
+
+```json
+{
+  "last_update" : "08/06/2022",
+  "films": [
+      {
+          "title": "Pulp fiction",
+          "actors": [
+  
+              {
+                  "first_name": "Thurman",
+                  "last_name": "Uma"
+              },
+              {
+                  "first_name": "Jackson",
+                  "last_name": "Samuel L."
+              }
+              ...
+          ]
+      },
+      ...
+}
+```
+
+Sample (french):
+
+```json
+{
+  "last_update" : "08/06/2022",
+  "films": [
+      {
+          "titre": "Pulp fiction",
+          "année": 1994,
+          "réalisateur": [
+            "Tanrantino",
+            "Quentin"
+          ]
+      },
+    ...
+}
+```
 
 ### Built With
 
@@ -105,9 +128,10 @@ The data extract is:
 <a href="https://www.python.org/">
   <img src="https://cdn.svgporn.com/logos/python.svg" width="50" alt="python" title="python">
 </a>
-<a href="https://www.selenium.dev/">
-  <img src="https://cdn.svgporn.com/logos/selenium.svg" width="50" alt="selenium" title="selenium">
+<a href="https://flask.palletsprojects.com/en/2.2.x/">
+  <img src="https://cdn.svgporn.com/logos/flask.svg" width="50" alt="flask" title="flask">
 </a>
+
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -116,7 +140,6 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-* [Google chrome](https://www.google.com/intl/es-419/chrome/)
 * [Python >=3.10](https://www.python.org/)
 * [Git](https://git-scm.com/)
 
@@ -124,39 +147,34 @@ To get a local copy up and running follow these simple example steps.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/darideveloper/europeanstartups_scraper.git
+   git clone https://github.com/darideveloper/video_api_json.git
    ```
 2. Install python packages (opening a terminal in the project folder)
    ```sh
    python -m pip install -r requirements.txt 
    ```
-3. Update your chrome path in the `.env` file (note: the chrome path is the folder where chrome data its installed)
-   ```js
-   CHROME_PATH = C:\Users\<<your-user-name>>\AppData\Local\Google\Chrome\User Data
-   ```
-
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-1. Go to https://app.europeanstartups.co/companies.startups/f/data_type/anyof_Verified/regions/allof_European%20Union and create an account (if you have problems with your email, try with a [proton email](https://proton.me/es/mail))
-2. Activate the premium trial or buy a premium account
-3. be sure to keep the account logged in the browser.
-4. Open a terminal in the project folder
-5. Run the project folder with python: 
+1. Open a terminal in the project folder
+2. Run the project folder with python: 
     ```sh
     python .
     ```
-6. Wait until the script finish, and check the `output.csv` file in the project folder (note: while the script its running, you can't use google chrome).
+3. Query the endpoints
 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Use chrome data fro avoid login in the page
-- [x] Extract all data from the page
-- [x] Save output data in csv file 
+- [x] CRUD endpoints
+  - [x] Create a film
+  - [x] Read a film
+  - [x] Update a film
+  - [x] Delete a film
+- [x] Endpoint for show all fimls with pagination
 
-See the [open issues](https://github.com/darideveloper/europeanstartups_scraper/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/darideveloper/video_api_json/issues) for a full list of proposed features (and known issues).
 
 
 <!-- CONTRIBUTING -->
@@ -187,21 +205,21 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Darideveloper - [@developerdari](https://twitter.com/developerdari) - darideveloper@gmail.com.com
 
-Project Link: [https://github.com/darideveloper/europeanstartups_scraper](https://github.com/darideveloper/europeanstartups_scraper)
+Project Link: [https://github.com/darideveloper/video_api_json](https://github.com/darideveloper/video_api_json)
 
 
 <!-- MARKDOWN LINKS & imgs -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/darideveloper/europeanstartups_scraper.svg?style=for-the-badge
-[contributors-url]: https://github.com/darideveloper/europeanstartups_scraper/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/darideveloper/europeanstartups_scraper.svg?style=for-the-badge
-[forks-url]: https://github.com/darideveloper/europeanstartups_scraper/network/members
-[stars-shield]: https://img.shields.io/github/stars/darideveloper/europeanstartups_scraper.svg?style=for-the-badge
-[stars-url]: https://github.com/darideveloper/europeanstartups_scraper/stargazers
-[issues-shield]: https://img.shields.io/github/issues/darideveloper/europeanstartups_scraper.svg?style=for-the-badge
-[issues-url]: https://github.com/darideveloper/europeanstartups_scraper/issues
-[license-shield]: https://img.shields.io/github/license/darideveloper/europeanstartups_scraper.svg?style=for-the-badge
-[license-url]: https://github.com/darideveloper/europeanstartups_scraper/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/darideveloper/video_api_json.svg?style=for-the-badge
+[contributors-url]: https://github.com/darideveloper/video_api_json/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/darideveloper/video_api_json.svg?style=for-the-badge
+[forks-url]: https://github.com/darideveloper/video_api_json/network/members
+[stars-shield]: https://img.shields.io/github/stars/darideveloper/video_api_json.svg?style=for-the-badge
+[stars-url]: https://github.com/darideveloper/video_api_json/stargazers
+[issues-shield]: https://img.shields.io/github/issues/darideveloper/video_api_json.svg?style=for-the-badge
+[issues-url]: https://github.com/darideveloper/video_api_json/issues
+[license-shield]: https://img.shields.io/github/license/darideveloper/video_api_json.svg?style=for-the-badge
+[license-url]: https://github.com/darideveloper/video_api_json/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/francisco-dari-hernandez-6456b6181/
 [product-screenshot]: ./imgs/screenshot.gif
