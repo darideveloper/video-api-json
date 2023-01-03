@@ -3,7 +3,7 @@
         "nom": "Doe",
         "pr\u00e9nom": "john"
     },
-    "last_update": "08/06/2022",
+    "last_update": "2023/01/03",
     "films": [
         {
             "titre": "Pulp fiction",
@@ -197,6 +197,34 @@
         },
         {
             "titre": "Sample 2",
+            "ann\u00e9e": 2022,
+            "r\u00e9alisateur": {
+                "nom": "Sample",
+                "pr\u00e9nom": "Sample"
+            },
+            "acteurs": [
+                {
+                    "nom": "Sample",
+                    "pr\u00e9nom": "Sample"
+                }
+            ]
+        },
+        {
+            "titre": "Sample 3",
+            "ann\u00e9e": 2022,
+            "r\u00e9alisateur": {
+                "nom": "Sample",
+                "pr\u00e9nom": "Sample"
+            },
+            "acteurs": [
+                {
+                    "nom": "Sample",
+                    "pr\u00e9nom": "Sample"
+                }
+            ]
+        },
+        {
+            "titre": "Sample 4",
             "ann\u00e9e": 2022,
             "r\u00e9alisateur": {
                 "nom": "Sample",

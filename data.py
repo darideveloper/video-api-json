@@ -1,5 +1,6 @@
 import os
 import json
+import datetime
 
 # Global variables
 JSON_PATH = os.path.join(os.path.dirname(__file__), 'data.json')
@@ -31,9 +32,15 @@ def save_films (new_films):
     """ Update films in JSON file
     """
     
+    # Get original data
     with open(JSON_PATH, 'r', encoding='UTF-8') as file:
         json_data = json.loads(file.read())
     
+    # Get current date and replace it
+    date = datetime.datetime.now ().strftime("%Y/%m/%d")
+    json_data["last_update"] = date
+    
+    # Replace films and save
     json_data["films"] = new_films
     with open(JSON_PATH, 'w', encoding='UTF-8') as file:
         file.write(json.dumps(json_data))
