@@ -8,7 +8,7 @@ CORS(app)
         
 @app.get('/<int:id>/')
 def get_film (id):
-    """ Get data from simgle film, using the position in the films list
+    """ Get data from single film, using the position in the films list
 
     Args:
         id (int): position of the film
@@ -23,7 +23,43 @@ def get_film (id):
         return film, 200
     else: 
         # Return error if film not exist
-        return {"error": "Film not found"}, 400  
+        return {"error": "Film not found"}, 404
+    
+@app.get('/all/')
+def get_all_film ():
+    """ Get data from all films with pagination
+
+    Returns:
+        dicctionary: data of all films 
+    """
+
+    # Get pagination data 
+    page = request.args.get('page', '')
+    results_per_page = request.args.get('results-per-page', '')
+    
+    # Return error if pagination data is not valid
+    if not page or not results_per_page:
+        return {"error": "'page' and 'results-per-page' are required in the url (as get parameters)"}, 400
+        
+    # Get films using pagination        
+    films = query_films()
+    start = (int(page) - 1) * int(results_per_page)
+    end = start + int(results_per_page)
+    films_pagination = films[start:end]
+    
+    # Check if there are more results
+    more_results = False
+    if len(films) >= end:
+        more_results = True
+    
+    return {
+        "films": films_pagination,
+        "total_films": len(films),
+        "current_page": page,
+        "results_per_page": results_per_page,
+        "more_results": more_results
+    }, 200
+    
     
 @app.post('/')
 def post_film ():
@@ -52,7 +88,7 @@ def post_film ():
 
 @app.put ('/<int:id>/')
 def put_film (id):
-    """ Updata data from simgle film, using the position in the films list
+    """ Updata data from single film, using the position in the films list
     
     Returns:
         dicctionary: confirmation or error message
@@ -76,7 +112,7 @@ def put_film (id):
         return {"message": "Film updated"}, 200
     else: 
         # Return error if film not exist
-        return {"error": "Film not found"}, 400  
+        return {"error": "Film not found"}, 404
     
 @app.delete ('/<int:id>/')
 def delete_film (id):
@@ -96,7 +132,7 @@ def delete_film (id):
         return {"message": "Film deleted. IDs updated"}, 200
     else: 
         # Return error if film not exist
-        return {"error": "Film not found"}, 400  
+        return {"error": "Film not found"}, 404
 
 if __name__ == '__main__':
     app.run(debug=True)
