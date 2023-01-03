@@ -115,6 +115,26 @@ def put_film (id):
     else: 
         # Return error if film not exist
         return {"error": "Film not found"}, 400  
+    
+@app.delete ('/<int:id>/')
+def delete_film (id):
+    """ Delete a film, using the position in the films list
+    
+    Returns:
+        dicctionary: confirmation or error message
+    """
+    
+    # Get all films
+    films = query_films()   
+    
+    if len(films) > id:
+        # Update data if film exist
+        del films[id]
+        save_films (films)
+        return {"message": "Film deleted. IDs updated"}, 200
+    else: 
+        # Return error if film not exist
+        return {"error": "Film not found"}, 400  
 
 if __name__ == '__main__':
     app.run(debug=True)
