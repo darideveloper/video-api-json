@@ -10,7 +10,7 @@ CORS(app)
 # Global variables
 JSON_PATH = os.path.join(os.path.dirname(__file__), 'data.json')
 
-def get_films ():
+def query_films ():
     """ Get films from JSON file
 
     Returns:
@@ -19,6 +19,19 @@ def get_films ():
     with open(JSON_PATH, 'r', encoding='UTF-8') as file:
         json_data = json.loads(file.read())
         return json_data["films"]
+    
+def query_film (id):
+    """ Get simgle film from JSON file
+
+    Returns:
+        dict: film data
+    """
+    with open(JSON_PATH, 'r', encoding='UTF-8') as file:
+        json_data = json.loads(file.read())
+        if json_data["films"][id]:
+            return json_data["films"][id]
+        else: 
+            ""
     
 def save_films (new_films):
     """ Update films in JSON file
@@ -41,11 +54,11 @@ def get_film (id):
     Returns:
         dicctionary: data of the film or error message
     """
-    films = get_films()
+    film = query_film(id)
     
-    if films[id]:
+    if film:
         # Return fil data if exist
-        return films[id], 200
+        return film, 200
     else: 
         # Return error if film not exist
         return {"error": "Film not found"}, 400  
@@ -58,7 +71,8 @@ def post_film ():
         dicctionary: confirmation or error message
     """
     
-    films = get_films()
+    # Get all films
+    films = query_films()
     
     # Get new film data from json
     new_film = request.get_json()
@@ -73,6 +87,34 @@ def post_film ():
         
         # return confirmation message
         return {"message": "Film added"}, 200
+
+@app.put ('/<int:id>/')
+def put_film (id):
+    """ Updata data from simgle film, using the position in the films list
+    
+    Returns:
+        dicctionary: confirmation or error message
+    """
+    
+    # Get all films
+    films = query_films()
+    
+    # Get new film data from json
+    new_data = request.get_json()
+    
+    # Get current film data
+    film = query_film(id)
+    
+    if film:
+        # Update data if film exist
+        for key, value in new_data.items():
+            film[key] = value
+        films[id] = film
+        save_films (films)
+        return {"message": "Film updated"}, 200
+    else: 
+        # Return error if film not exist
+        return {"error": "Film not found"}, 400  
 
 if __name__ == '__main__':
     app.run(debug=True)
