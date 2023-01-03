@@ -22,7 +22,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/darideveloper/video_api_json">
-    <img src="imgs/logo.png" alt="Logo" width="250" height="80">
+    <img src="./imgs/logo.png" alt="Logo" width="250" height="80">
   </a>
 
 <h3 align="center">Video API Json</h3>
@@ -46,6 +46,9 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#built-with">Api endpoints</a></li>
+        <li><a href="#built-with">Api documentation in postman</a></li>
+        <li><a href="#built-with">Data structure</a></li>
       </ul>
     </li>
     <li>
@@ -68,11 +71,37 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Web page Screenshot][product-screenshot]](webpage)
-
 Flask app for modify data (CRUD) about films stored in a local json file.
 
+### Built With
+
+
+<div>
+<a href="https://www.python.org/">
+  <img src="https://cdn.svgporn.com/logos/python.svg" width="50" alt="python" title="python">
+</a>
+<a href="https://flask.palletsprojects.com/en/2.2.x/">
+  <img src="https://cdn.svgporn.com/logos/flask.svg" width="50" alt="flask" title="flask">
+</a>
+
+
 ### Api endpoints
+
+> (GET) **/all/** - Show all films with pagination. Get params: page (int), results-per-page (int)
+
+> (GET) **/id/** - Show a film. Url param: id (int)
+
+> (POST) **/** - Create a film. Json: custom data structure
+
+> (PUT) **/id/** - Update a film. Json: custom data structure. Url param: id (int)
+
+> (DELETE) **/id/** - Delete a film. Url param: id (int)
+
+### Api doumentation in postman
+
+<a href="https://documenter.getpostman.com/view/14580012/2s8Z711s58">
+  <img src="./imgs/postman.png" alt="postman logo" width="160" height="50">
+</a>
 
 ### Data structure
 
@@ -95,11 +124,10 @@ Sample (english):
               {
                   "first_name": "Jackson",
                   "last_name": "Samuel L."
-              }
-              ...
+              },
           ]
       },
-      ...
+  ]
 }
 ```
 
@@ -117,21 +145,9 @@ Sample (french):
             "Quentin"
           ]
       },
-    ...
+  ]
 }
 ```
-
-### Built With
-
-
-<div>
-<a href="https://www.python.org/">
-  <img src="https://cdn.svgporn.com/logos/python.svg" width="50" alt="python" title="python">
-</a>
-<a href="https://flask.palletsprojects.com/en/2.2.x/">
-  <img src="https://cdn.svgporn.com/logos/flask.svg" width="50" alt="flask" title="flask">
-</a>
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -223,9 +239,10 @@ Project Link: [https://github.com/darideveloper/video_api_json](https://github.c
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/francisco-dari-hernandez-6456b6181/
 [product-screenshot]: ./imgs/screenshot.gif
+[postman-logo]: https://cdn.svgporn.com/logos/postman.svg
 [gmail-url]: mailto:darideveloper@gmail.com
 [fiverr-url]: https://www.fiverr.com/darideveloper
 [gmail-shield]: https://img.shields.io/badge/-gmail-black.svg?style=for-the-badge&logo=gmail&colorB=555&logoColor=white
 [fiverr-shield]: https://img.shields.io/badge/-fiverr-black.svg?style=for-the-badge&logo=fiverr&colorB=555&logoColor=white
 
-<span>Last code update: <time datetime="2022-11-29" class="last-update">2022-11-29</time>
+<span>Last code update: <time datetime="2022-11-29" class="last-update">2023-01-02</time>
